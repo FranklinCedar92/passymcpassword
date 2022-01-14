@@ -3,17 +3,17 @@ var passwordChar = [
   upperChar = [
     "A", "B", "C", "D", "E","F", "G", "H", "I", "J",
     "K", "L", "M", "N", "O", "P", "Q", "R", "S", 
-    "T", "U", "V", "W", "X", "Y", "Z"
+    "T", "U", "V", "W", "X", "Y", "Z",
   ],
 
   lowerChar = [
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", 
-    "u", "v", "w", "x", "y", "z"
+    "u", "v", "w", "x", "y", "z",
   ],
 
   numberChar = [
-    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
+    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
   ],
 
   specialChar = [
@@ -35,10 +35,10 @@ var generateBtn = document.querySelector("#generate");
 //make all of this an object so get passwordInput.length or passwordInput.upper
 function writePassword () {
   var passwordLength = window.prompt("Your password must be between 8 and 128 characters. How long would you like your password to be?");
-  numOfChar.push(passwordLength);
-  passwordContent.push(numOfChar);
+  numOfChar.push(Number.parseInt(passwordLength));
+  // passwordContent.push(numOfChar));
   //console.log(passwordContent)
-  console.log(numOfChar);
+  console.log(passwordChar[4]);
   if (passwordLength < 8 || passwordLength > 128) {
     window.alert("Number invalid!");
     return false;
@@ -52,8 +52,8 @@ function writePassword () {
   var upperConfirm = window.confirm("Do you want to include uppercase characters?");
     if (upperConfirm) {
       window.alert("Uppercase characters included!");
-      //How do I include the characteristics that I have confirmed?
-      passwordContent.push(upperChar);
+      
+      passwordContent = (passwordContent + upperChar);
       console.log(passwordContent);
     }
     else {
@@ -64,9 +64,9 @@ function writePassword () {
   var lowerConfirm = window.confirm("Do you want to include lowercase characters?"); 
     if (lowerConfirm) {
       window.alert("Lowercase characters included!");
-      //How do I include the characteristics that I have confirmed?
-      passwordContent.push(lowerChar);
-      console.log(passwordContent);  
+      
+      passwordContent = (passwordContent + lowerChar);
+      console.log(passwordContent);
     }
     else {
       window.alert("Lowercase characters excluded from password.");
@@ -75,8 +75,8 @@ function writePassword () {
     var numConfirm = window.confirm("Do you want to include numbers?"); 
     if (numConfirm) {
       window.alert("Numbers included!");
-      //How do I include the characteristics that I have confirmed?
-      passwordContent.push(numberChar);
+
+      passwordContent = (passwordContent + numberChar);
       console.log(passwordContent);
     }
     else {
@@ -86,15 +86,16 @@ function writePassword () {
     var specialConfirm = window.confirm("Do you want to include special characters?"); 
     if (specialConfirm) {
       window.alert("Special characters included!");
-      //How do I include the characteristics that I have confirmed?
-      passwordContent.push(specialChar);
+
+      passwordContent = (passwordContent + specialChar);
       console.log(passwordContent);
     }
     else {
       window.alert("Special characters excluded from password.");
     };
 
-//Here all the information for the parameters has been gathered
+  //Here all the information for the parameters has been gathered
+
 
   var password = generatePassword();
   for (var i = 0; i <= passwordLength; i++) {
@@ -103,8 +104,7 @@ function writePassword () {
    } //"generatePassword" needs to be a defined function?
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-  
+  passwordText.value = password;  
 }
 
 // Add event listener to generate button
@@ -134,10 +134,10 @@ special characters in a randomly generated string
 
 */
 
-/* Do I use a for loop?
+// Do I use a for loop?
 
-for (var i = 0; i <= passwordLength; i++) {
-   var randomNumber = Math.floor(Math.random() * passwordContent);
-   password += passwordContent.substring(randomNumber, randomNumber +1);
-  }
-*/
+  //for (var i = 0; i <= passwordLength; i++) {
+  //  var randomNumber = Math.floor(Math.random() * passwordContent);
+   // password += passwordContent.substring(randomNumber, randomNumber +1);
+    //}
+  
