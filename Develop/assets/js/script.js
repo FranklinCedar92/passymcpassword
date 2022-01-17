@@ -38,7 +38,7 @@ var generateBtn = document.querySelector("#generate");
 function generatePassword (passwordContent, passwordLength) {
   var password = ""
   for (var i = 0; i <= passwordLength; i++) {
-    var randomNumber = Math.floor(Math.random() * passwordLength);
+    var randomNumber = Math.floor(Math.random() * numOfChar);
     password += passwordContent.substring(randomNumber, randomNumber +1);
   } 
   return password
