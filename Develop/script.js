@@ -1,25 +1,29 @@
 // Assignment code here
 var passwordChar = [
   upperChar = [
-    "A", "B", "C", "D", "E","F", "G", "H", "I", "J",
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    /*"A", "B", "C", "D", "E","F", "G", "H", "I", "J",
     "K", "L", "M", "N", "O", "P", "Q", "R", "S", 
-    "T", "U", "V", "W", "X", "Y", "Z",
+    "T", "U", "V", "W", "X", "Y", "Z"*/
   ],
 
   lowerChar = [
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
+    "abcdefghijklmnopqrstuvwxyz"
+    /*"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", 
-    "u", "v", "w", "x", "y", "z",
+    "u", "v", "w", "x", "y", "z"*/
   ],
 
   numberChar = [
-    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+    "0123456789"
+    /*"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"*/
   ],
 
   specialChar = [
-    "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", 
+    "!@#$%^&*()_+-=[]{};:<>?/~"
+    /*"!", "@", "#", "$", "%", "^", "&", "*", "(", ")", 
     "-", "_", "=", "+", "{", "}", "[", "]", ":", ";", 
-    "<", ">", ",", ".", "?", "/"
+    "<", ">", ",", ".", "?", "/"*/
   ],
 
   numOfChar = []
@@ -31,8 +35,17 @@ var passwordContent = [];
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+function generatePassword (passwordContent, passwordLength) {
+  var password = ""
+  for (var i = 0; i <= passwordLength; i++) {
+    var randomNumber = Math.floor(Math.random() * passwordLength);
+    password += passwordContent.substring(randomNumber, randomNumber +1);
+  } 
+  return password
+}
+
 // Write password to the #password input
-//make all of this an object so get passwordInput.length or passwordInput.upper
+
 function writePassword () {
   var passwordLength = window.prompt("Your password must be between 8 and 128 characters. How long would you like your password to be?");
   numOfChar.push(Number.parseInt(passwordLength));
@@ -46,98 +59,64 @@ function writePassword () {
   else {
     window.alert("Your password will be " + passwordLength + " characters long.");
   } 
-  //here I have to take the input from the user and make that the parameter
 
+  //taking the input from the user and making those the parameters
 
+  //Uppercase characters added?
   var upperConfirm = window.confirm("Do you want to include uppercase characters?");
     if (upperConfirm) {
       window.alert("Uppercase characters included!");
       
-      passwordContent = (passwordContent + upperChar);
+      passwordContent = (passwordContent + passwordChar[0]);
       console.log(passwordContent);
     }
     else {
       window.alert("Uppercase characters excluded from password.");
     };
   
-
+  //Lowercase characters added?  
   var lowerConfirm = window.confirm("Do you want to include lowercase characters?"); 
     if (lowerConfirm) {
       window.alert("Lowercase characters included!");
       
-      passwordContent = (passwordContent + lowerChar);
+      passwordContent = (passwordContent + passwordChar[1]);
       console.log(passwordContent);
     }
     else {
       window.alert("Lowercase characters excluded from password.");
     };
   
+    //Numbers added?
     var numConfirm = window.confirm("Do you want to include numbers?"); 
     if (numConfirm) {
       window.alert("Numbers included!");
 
-      passwordContent = (passwordContent + numberChar);
+      passwordContent = (passwordContent + passwordChar[2]);
       console.log(passwordContent);
     }
     else {
       window.alert("Numbers excluded from password.");
     };
 
+    //Special characters added?
     var specialConfirm = window.confirm("Do you want to include special characters?"); 
     if (specialConfirm) {
       window.alert("Special characters included!");
 
-      passwordContent = (passwordContent + specialChar);
+      passwordContent = (passwordContent + passwordChar[3]);
       console.log(passwordContent);
     }
     else {
       window.alert("Special characters excluded from password.");
     };
-
-  //Here all the information for the parameters has been gathered
-
-
-  var password = generatePassword();
-  for (var i = 0; i <= passwordLength; i++) {
-    var randomNumber = Math.floor(Math.random() * passwordContent);
-    password += passwordContent.substring(randomNumber, randomNumber +1);
-   } //"generatePassword" needs to be a defined function?
+    
+  //Grab text area in index.html  
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;  
+  //create text in text area
+  passwordText.textContent = generatePassword(passwordContent, passwordLength);  
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-/*var randomNumber = function(min, max) {
-  var value = Math.floor(Math.random() * passwordLength);
-
-  return value;
-}; 
-
-*/
-
-/* First I have all the criteria that the password
-can be made of. This information is in the arrays.
-
-Then I have the prompts that retrieve the info.
-
-Next I have to somehow use the information that
-I collected to be the parameters for the 
-password.
-
-I have to figure out how to include letters and
-special characters in a randomly generated string
-
-
-
-*/
-
-// Do I use a for loop?
-
-  //for (var i = 0; i <= passwordLength; i++) {
-  //  var randomNumber = Math.floor(Math.random() * passwordContent);
-   // password += passwordContent.substring(randomNumber, randomNumber +1);
-    //}
-  
